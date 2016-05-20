@@ -32,3 +32,18 @@ func anagramPalindrome(str:String) -> Bool {
 	}
 	return true
 }
+
+
+// Determines whether a string has all unique characters.
+
+func allUniqueCharacters(str:String) -> Bool {
+    var characters = [Character:Bool]()
+    for char in str.characters {
+        if let _ = characters[char] {
+            return false
+        } else {
+            characters[char] = true
+        }
+    }
+    return true
+}
