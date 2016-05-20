@@ -47,3 +47,24 @@ func allUniqueCharacters(str:String) -> Bool {
     }
     return true
 }
+
+// Determine the first unique character in a string. O(n)
+
+func firstUniqueCharacter(str:String) -> Character? {
+    var chars = [Character:Int]()
+    
+    for char in str.characters {
+        if let _ = chars[char] {
+            chars[char]! += 1
+        } else {
+            chars[char] = 1
+        }
+    }
+    
+    for char in str.characters {
+        if let n = chars[char] where n == 1 {
+            return char
+        }
+    }
+    return nil
+}
