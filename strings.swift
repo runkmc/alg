@@ -54,7 +54,7 @@ func firstUniqueCharacter(str:String) -> Character? {
     var chars = [Character:Int]()
     
     for char in str.characters {
-        if let _ = chars[char] {
+        if case .Some = chars[char] {
             chars[char]! += 1
         } else {
             chars[char] = 1
