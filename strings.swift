@@ -105,3 +105,44 @@ func urlify(str:String) -> String {
     return newString
 }
 
+
+/// Check is a string is exactly one change away from another. O(n). 
+
+func oneChangeAway(original:String, new:String) -> Bool {
+    
+    func checkReplacement() -> Bool {
+        var changeFound = false
+        for index in 0..<original.characters.count {
+            switch original[original.startIndex.advancedBy(index)] {
+            case new[new.startIndex.advancedBy(index)]:
+                continue
+            case _ where changeFound == false:
+                changeFound = true
+                continue
+            default:
+                return false
+            }
+        }
+        return true
+    }
+    
+    func checkRemoval() -> Bool {
+        let originalSet = Set(original.characters)
+        let newSet = Set(new.characters)
+        return newSet.isStrictSubsetOf(originalSet)
+    }
+    
+    func checkAddition() -> Bool {
+        let originalSet = Set(original.characters)
+        let newSet = Set(new.characters)
+        return newSet.isStrictSupersetOf(originalSet)
+    }
+    
+    if original == new { return true }
+    
+    if original.characters.count == new.characters.count { return checkReplacement() }
+    if original.characters.count == new.characters.count + 1 { return checkRemoval() }
+    if original.characters.count == new.characters.count - 1 { return checkAddition() }
+    
+    return false
+}
