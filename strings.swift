@@ -69,3 +69,20 @@ func firstUniqueCharacter(str:String) -> Character? {
     }
     return nil
 }
+
+
+/// Remove characters from a given string. O(n).
+
+func remove(characters:String, from:String) -> String {
+    let chars = Array(characters.characters)
+    var newString = ""
+    
+    for char in from.characters {
+        if chars.contains(char) {
+            continue
+        } else {
+            newString.append(char)
+        }
+    }
+    return newString
+}
