@@ -86,3 +86,22 @@ func remove(characters:String, from:String) -> String {
     }
     return newString
 }
+
+
+/// Replace spaces in a string with %20. O(n).
+
+func urlify(str:String) -> String {
+    let space: Character = " "
+    var newString: String = ""
+    for char in str.characters {
+        if char == space {
+            newString.append(Character("%"))
+            newString.append(Character("2"))
+            newString.append(Character("0"))
+        } else {
+            newString.append(char)
+        }
+    }
+    return newString
+}
+
