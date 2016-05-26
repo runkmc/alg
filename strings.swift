@@ -1,6 +1,6 @@
 import Foundation
 
-// Determines whether a string is a palindrome or not. Case sensitive.
+/// Determines whether a string is a palindrome or not. Case sensitive.
 
 func isPalindrome(str:String) -> Bool {
 	for i in 0...(str.characters.count / 2) {
@@ -14,7 +14,7 @@ func isPalindrome(str:String) -> Bool {
 }
 
 
-// Determines whether a string can be rearranged to become a palindrome.
+/// Determines whether a string can be rearranged to become a palindrome.
 
 func anagramPalindrome(str:String) -> Bool {
 	var chars = [Character:Int]()
@@ -34,7 +34,7 @@ func anagramPalindrome(str:String) -> Bool {
 }
 
 
-// Determines whether a string has all unique characters.
+/// Determines whether a string has all unique characters.
 
 func allUniqueCharacters(str:String) -> Bool {
     var characters = [Character:Bool]()
@@ -48,7 +48,8 @@ func allUniqueCharacters(str:String) -> Bool {
     return true
 }
 
-// Determine the first unique character in a string. O(n)
+
+/// Determine the first unique character in a string. O(n)
 
 func firstUniqueCharacter(str:String) -> Character? {
     var chars = [Character:Int]()
