@@ -17,3 +17,25 @@ func getMaxProfit(prices:[Int]) -> Int {
     }
     return maxProfit
 }
+
+/// Given an array of integers, returns an array of the products of every
+/// other element 
+
+func allProductsExceptAtIndex(arr:[Int]) -> [Int] {
+    if arr.isEmpty { return [0] }
+    var products: [Int] = []
+    var product = 1
+    
+    for num in arr {
+        products.append(product)
+        product = product * num
+    }
+    
+    product = 1
+    for index in (arr.count - 1).stride(through: 0, by: -1) {
+       products[index] = products[index] * product
+       product = product * arr[index]
+    }
+    
+    return products
+}
