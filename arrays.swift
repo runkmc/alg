@@ -39,3 +39,27 @@ func allProductsExceptAtIndex(arr:[Int]) -> [Int] {
     
     return products
 }
+
+/// Given an array of strings and an integer n, find the longest combined
+/// n consecutive strings. This is O(3n) time, which is the best I can think of
+//  for now.
+
+func longestConsecutiveStrings(arr:[String], _ num:Int) -> [String] {
+    if arr.count < num { return [""] }
+    
+    var longestLengthSoFar = 0
+    var startingIndexOfLongestLength = 0
+    for idx in arr.indices {
+        var currentLength = 0
+        if arr.indices.contains(idx + (num - 1)) {
+            currentLength = arr[idx...(idx + (num - 1))].reduce(0) { result, element in
+                result + element.characters.count
+            }
+        }
+        if currentLength > longestLengthSoFar {
+            longestLengthSoFar = currentLength
+            startingIndexOfLongestLength = idx
+        }
+    }
+    return Array(arr[startingIndexOfLongestLength..<(startingIndexOfLongestLength + num)])
+}
