@@ -146,3 +146,47 @@ func oneChangeAway(original:String, new:String) -> Bool {
     
     return false
 }
+
+/// Compress a string into character counts. Given "aaabbbccc", returns
+/// "a3b3c3".
+
+func compressString(str:String) -> String {
+    if str.isEmpty { return str }
+    
+    var compressedString = ""
+    var index = str.startIndex.advancedBy(1)
+    var previousChar = str[str.startIndex]
+    var currentCount = 1
+    
+    for char in str.substringFromIndex(str.startIndex.advancedBy(1)).characters {
+        index = index.advancedBy(1)
+        if previousChar == char && index == str.endIndex {
+            currentCount += 1
+            compressedString.append(char)
+            compressedString.appendContentsOf(String(currentCount))
+            continue
+        }
+        
+        if index == str.endIndex {
+            compressedString.append(char)
+        }
+        
+        if previousChar == char {
+            currentCount += 1
+            continue
+        }
+        
+        compressedString.append(previousChar)
+        if currentCount > 1 {
+            compressedString.appendContentsOf(String(currentCount))
+        }
+        previousChar = char
+        currentCount = 1
+        
+    }
+    if str.characters.count <= compressedString.characters.count {
+        return str
+    }
+    return compressedString
+}
+
