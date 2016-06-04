@@ -63,3 +63,31 @@ func longestConsecutiveStrings(arr:[String], _ num:Int) -> [String] {
     }
     return Array(arr[startingIndexOfLongestLength..<(startingIndexOfLongestLength + num)])
 }
+
+/// Given an array of ints, return the largest possible product of three of
+/// them
+
+func largestProductOfThree(arr:[Int]) -> Int {
+    if arr.count < 3 { fatalError() }
+    
+    var highest = arr[0] > arr[1] ? arr[0] : arr[1]
+    var lowest = arr[0] < arr[1] ? arr[0] : arr[1]
+    var highestProductOfTwo = arr[0] * arr[1]
+    var lowestProductOfTwo = highestProductOfTwo
+    var highestProductOfThree = arr[0] * arr[1] * arr[2]
+    
+    for index in 2..<arr.endIndex {
+        let current = arr[index]
+        highestProductOfThree = [(highestProductOfTwo * current),
+                                (lowestProductOfTwo * current),
+                                highestProductOfThree].maxElement()!
+        
+        highestProductOfTwo = [highestProductOfTwo, (highest * current), (lowest * current)].maxElement()!
+        lowestProductOfTwo = [lowestProductOfTwo, (highest * current), (lowest * current)].minElement()!
+        
+        highest = [highest, current].maxElement()!
+        lowest = [lowest, current].minElement()!
+    }
+    
+    return highestProductOfThree
+}
