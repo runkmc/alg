@@ -1,5 +1,5 @@
 import Foundation
-
+import XCTest
 
 /// Given an array of Ints that represent stock market prices for a stock on a 
 /// given day, return the highest possible profit from buying and selling on
