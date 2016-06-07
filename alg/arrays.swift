@@ -1,7 +1,7 @@
 import Foundation
 import XCTest
 
-/// Given an array of Ints that represent stock market prices for a stock on a 
+/// Given an array of Ints that represent stock market prices for a stock on a
 /// given day, return the highest possible profit from buying and selling on
 //  that day.
 
@@ -16,6 +16,12 @@ func getMaxProfit(prices:[Int]) -> Int {
         lowest = lowest < price ? lowest : price
     }
     return maxProfit
+}
+
+class MaxProfitTest: XCTestCase {
+    func testGetMaxProfit() {
+        XCTAssertEqual(getMaxProfit([10,7,5,8,11,9]), 6)
+    }
 }
 
 /// Given an array of integers, returns an array of the products of every
