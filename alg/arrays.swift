@@ -1,8 +1,8 @@
 import Foundation
 import XCTest
 
-/// Given an array of Ints that represent stock market prices for a stock on a
-/// given day, return the highest possible profit from buying and selling on
+// Given an array of Ints that represent stock market prices for a stock on a
+// given day, return the highest possible profit from buying and selling on
 //  that day.
 
 func getMaxProfit(prices:[Int]) -> Int {
@@ -24,8 +24,8 @@ class MaxProfitTest: XCTestCase {
     }
 }
 
-/// Given an array of integers, returns an array of the products of every
-/// other element 
+// Given an array of integers, returns an array of the products of every
+// other element
 
 func allProductsExceptAtIndex(arr:[Int]) -> [Int] {
     if arr.isEmpty { return [0] }
@@ -46,8 +46,8 @@ func allProductsExceptAtIndex(arr:[Int]) -> [Int] {
     return products
 }
 
-/// Given an array of strings and an integer n, find the longest combined
-/// n consecutive strings. This is O(3n) time, which is the best I can think of
+// Given an array of strings and an integer n, find the longest combined
+// n consecutive strings. This is O(3n) time, which is the best I can think of
 //  for now.
 
 func longestConsecutiveStrings(arr:[String], _ num:Int) -> [String] {
@@ -70,8 +70,8 @@ func longestConsecutiveStrings(arr:[String], _ num:Int) -> [String] {
     return Array(arr[startingIndexOfLongestLength..<(startingIndexOfLongestLength + num)])
 }
 
-/// Given an array of ints, return the largest possible product of three of
-/// them
+// Given an array of ints, return the largest possible product of three of
+// them
 
 func largestProductOfThree(arr:[Int]) -> Int {
     if arr.count < 3 { fatalError() }
