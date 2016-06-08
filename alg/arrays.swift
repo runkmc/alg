@@ -97,3 +97,28 @@ func largestProductOfThree(arr:[Int]) -> Int {
     
     return highestProductOfThree
 }
+
+// Merge ranges... I'll write a more complete explanation soon.
+
+func mergeRanges(ranges:[[Int]]) -> [[Int]] {
+    let sortedRanges = ranges.sort { $0[0] < $1[0] }
+    var current = sortedRanges[0]
+    var mergedRanges: [[Int]] = []
+    
+    for range in sortedRanges.dropFirst() {
+        if current[1] >= range[0] {
+            current = [current[0], range[1]]
+            continue
+        }
+        mergedRanges.append(current)
+        current = range
+    }
+    mergedRanges.append(current)
+    return mergedRanges
+}
+
+class MergeRangesTest: XCTestCase {
+    func testMergeRanges() {
+        XCTAssertEqual(mergeRanges([[0,1], [3,5], [4,8], [10,12], [9,10]]), [[0,1], [3,8], [9,12]])
+    }
+}
