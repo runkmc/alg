@@ -1,4 +1,5 @@
 import Foundation
+import XCTest
 
 // Determines whether a string is a palindrome or not. Case sensitive.
 
@@ -188,4 +189,20 @@ func compressString(str:String) -> String {
         return str
     }
     return compressedString
+}
+
+// Check to see of one string is a rotation of another
+
+func checkForRotation(string1: String, _ string2: String) -> Bool {
+    if string1.characters.count != string2.characters.count { return false }
+    var s1 = string1
+    s1.appendContentsOf(string1)
+    return s1.containsString(string2)
+}
+
+class CheckForRotationTest: XCTestCase {
+    func testRotation() {
+        XCTAssertTrue(checkForRotation("BenjaminSisko", "jaminSiskoBen"))
+        XCTAssertFalse(checkForRotation("nope", "not even close"))
+    }
 }
