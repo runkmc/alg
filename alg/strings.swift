@@ -1,6 +1,6 @@
 import Foundation
 
-/// Determines whether a string is a palindrome or not. Case sensitive.
+// Determines whether a string is a palindrome or not. Case sensitive.
 
 func isPalindrome(str:String) -> Bool {
 	for i in 0...(str.characters.count / 2) {
@@ -14,7 +14,7 @@ func isPalindrome(str:String) -> Bool {
 }
 
 
-/// Determines whether a string can be rearranged to become a palindrome.
+// Determines whether a string can be rearranged to become a palindrome.
 
 func anagramPalindrome(str:String) -> Bool {
 	var chars = [Character:Int]()
@@ -34,7 +34,7 @@ func anagramPalindrome(str:String) -> Bool {
 }
 
 
-/// Determines whether a string has all unique characters.
+// Determines whether a string has all unique characters.
 
 func allUniqueCharacters(str:String) -> Bool {
     var characters = [Character:Bool]()
@@ -49,7 +49,7 @@ func allUniqueCharacters(str:String) -> Bool {
 }
 
 
-/// Determine the first unique character in a string. O(n)
+// Determine the first unique character in a string. O(n)
 
 func firstUniqueCharacter(str:String) -> Character? {
     var chars = [Character:Int]()
@@ -71,7 +71,7 @@ func firstUniqueCharacter(str:String) -> Character? {
 }
 
 
-/// Remove characters from a given string. O(n).
+// Remove characters from a given string. O(n).
 
 func remove(characters:String, from:String) -> String {
     let chars = Array(characters.characters)
@@ -88,7 +88,7 @@ func remove(characters:String, from:String) -> String {
 }
 
 
-/// Replace spaces in a string with %20. O(n).
+// Replace spaces in a string with %20. O(n).
 
 func urlify(str:String) -> String {
     let space: Character = " "
@@ -106,7 +106,7 @@ func urlify(str:String) -> String {
 }
 
 
-/// Check is a string is exactly one change away from another. O(n). 
+// Check is a string is exactly one change away from another. O(n).
 
 func oneChangeAway(original:String, new:String) -> Bool {
     
@@ -147,8 +147,8 @@ func oneChangeAway(original:String, new:String) -> Bool {
     return false
 }
 
-/// Compress a string into character counts. Given "aaabbbccc", returns
-/// "a3b3c3".
+// Compress a string into character counts. Given "aaabbbccc", returns
+// "a3b3c3".
 
 func compressString(str:String) -> String {
     if str.isEmpty { return str }
@@ -189,4 +189,3 @@ func compressString(str:String) -> String {
     }
     return compressedString
 }
-
