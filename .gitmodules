@@ -1,3 +1,6 @@
 [submodule "LinkedList"]
 	path = LinkedList
 	url = https://github.com/runkmc/linkedList
+[submodule "BinaryTree"]
+	path = BinaryTree
+	url = https://github.com/runkmc/BinaryTree
