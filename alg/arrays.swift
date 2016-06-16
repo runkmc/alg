@@ -5,7 +5,7 @@ import XCTest
 // given day, return the highest possible profit from buying and selling on
 //  that day.
 
-func getMaxProfit(prices:[Int]) -> Int {
+func getMaxProfit(_ prices:[Int]) -> Int {
     var maxProfit = prices[1] - prices[0]
     var lowest = prices[0]
     
@@ -27,7 +27,7 @@ class MaxProfitTest: XCTestCase {
 // Given an array of integers, returns an array of the products of every
 // other element
 
-func allProductsExceptAtIndex(arr:[Int]) -> [Int] {
+func allProductsExceptAtIndex(_ arr:[Int]) -> [Int] {
     if arr.isEmpty { return [0] }
     var products: [Int] = []
     var product = 1
@@ -38,7 +38,7 @@ func allProductsExceptAtIndex(arr:[Int]) -> [Int] {
     }
     
     product = 1
-    for index in (arr.count - 1).stride(through: 0, by: -1) {
+    for index in stride(from: (arr.count - 1), through: 0, by: -1) {
        products[index] = products[index] * product
        product = product * arr[index]
     }
@@ -50,7 +50,7 @@ func allProductsExceptAtIndex(arr:[Int]) -> [Int] {
 // n consecutive strings. This is O(3n) time, which is the best I can think of
 //  for now.
 
-func longestConsecutiveStrings(arr:[String], _ num:Int) -> [String] {
+func longestConsecutiveStrings(_ arr:[String], _ num:Int) -> [String] {
     if arr.count < num { return [""] }
     
     var longestLengthSoFar = 0
@@ -73,7 +73,7 @@ func longestConsecutiveStrings(arr:[String], _ num:Int) -> [String] {
 // Given an array of ints, return the largest possible product of three of
 // them
 
-func largestProductOfThree(arr:[Int]) -> Int {
+func largestProductOfThree(_ arr:[Int]) -> Int {
     if arr.count < 3 { fatalError() }
     
     var highest = arr[0] > arr[1] ? arr[0] : arr[1]
@@ -86,13 +86,13 @@ func largestProductOfThree(arr:[Int]) -> Int {
         let current = arr[index]
         highestProductOfThree = [(highestProductOfTwo * current),
                                 (lowestProductOfTwo * current),
-                                highestProductOfThree].maxElement()!
+                                highestProductOfThree].max()!
         
-        highestProductOfTwo = [highestProductOfTwo, (highest * current), (lowest * current)].maxElement()!
-        lowestProductOfTwo = [lowestProductOfTwo, (highest * current), (lowest * current)].minElement()!
+        highestProductOfTwo = [highestProductOfTwo, (highest * current), (lowest * current)].max()!
+        lowestProductOfTwo = [lowestProductOfTwo, (highest * current), (lowest * current)].min()!
         
-        highest = [highest, current].maxElement()!
-        lowest = [lowest, current].minElement()!
+        highest = [highest, current].max()!
+        lowest = [lowest, current].min()!
     }
     
     return highestProductOfThree
@@ -100,8 +100,8 @@ func largestProductOfThree(arr:[Int]) -> Int {
 
 // Merge ranges... I'll write a more complete explanation soon.
 
-func mergeRanges(ranges:[[Int]]) -> [[Int]] {
-    let sortedRanges = ranges.sort { $0[0] < $1[0] }
+func mergeRanges(_ ranges:[[Int]]) -> [[Int]] {
+    let sortedRanges = ranges.sorted { $0[0] < $1[0] }
     var current = sortedRanges[0]
     var mergedRanges: [[Int]] = []
     
@@ -120,5 +120,19 @@ func mergeRanges(ranges:[[Int]]) -> [[Int]] {
 class MergeRangesTest: XCTestCase {
     func testMergeRanges() {
         XCTAssertEqual(mergeRanges([[0,1], [3,5], [4,8], [10,12], [9,10]]), [[0,1], [3,8], [9,12]])
+    }
+}
+
+// Find the unique Int in an array of otherwise duplicate Ints
+
+func findUniqueInt(_ arr:[Int]) -> Int {
+	var unique = 0
+    arr.forEach() { unique = $0 ^ unique }
+    return unique
+}
+
+class FindUniqueTest: XCTestCase {
+    func testFindUnique() {
+        XCTAssertEqual(findUniqueInt([2,2,3,3,4,4,2,2,3,5,4,4,3]), 5)
     }
 }
