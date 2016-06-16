@@ -3,9 +3,9 @@ import XCTest
 
 // Determines whether a string is a palindrome or not. Case sensitive.
 
-func isPalindrome(str:String) -> Bool {
+func isPalindrome(_ str:String) -> Bool {
 	for i in 0...(str.characters.count / 2) {
-		if str[str.startIndex.advancedBy(i)] == str[str.endIndex.advancedBy((-1 - i))] {
+		if str[str.characters.index(str.startIndex, offsetBy: i)] == str[str.characters.index(str.endIndex, offsetBy: (-1 - i))] {
 			continue
 		} else {
 			return false
@@ -17,10 +17,10 @@ func isPalindrome(str:String) -> Bool {
 
 // Determines whether a string can be rearranged to become a palindrome.
 
-func anagramPalindrome(str:String) -> Bool {
+func anagramPalindrome(_ str:String) -> Bool {
 	var chars = [Character:Int]()
 	for i in 0..<(str.characters.count) {
-		let c = str[str.startIndex.advancedBy(i)]
+		let c = str[str.characters.index(str.startIndex, offsetBy: i)]
 		if let _ = chars[c] {
 			chars[c] = chars[c]! + 1
 		} else {
@@ -37,7 +37,7 @@ func anagramPalindrome(str:String) -> Bool {
 
 // Determines whether a string has all unique characters.
 
-func allUniqueCharacters(str:String) -> Bool {
+func allUniqueCharacters(_ str:String) -> Bool {
     var characters = [Character:Bool]()
     for char in str.characters {
         if let _ = characters[char] {
@@ -52,11 +52,11 @@ func allUniqueCharacters(str:String) -> Bool {
 
 // Determine the first unique character in a string. O(n)
 
-func firstUniqueCharacter(str:String) -> Character? {
+func firstUniqueCharacter(_ str:String) -> Character? {
     var chars = [Character:Int]()
     
     for char in str.characters {
-        if case .Some = chars[char] {
+        if case .some = chars[char] {
             chars[char]! += 1
         } else {
             chars[char] = 1
@@ -74,7 +74,7 @@ func firstUniqueCharacter(str:String) -> Character? {
 
 // Remove characters from a given string. O(n).
 
-func remove(characters:String, from:String) -> String {
+func remove(_ characters:String, from:String) -> String {
     let chars = Array(characters.characters)
     var newString = ""
     
@@ -91,7 +91,7 @@ func remove(characters:String, from:String) -> String {
 
 // Replace spaces in a string with %20. O(n).
 
-func urlify(str:String) -> String {
+func urlify(_ str:String) -> String {
     let space: Character = " "
     var newString: String = ""
     for char in str.characters {
@@ -109,13 +109,13 @@ func urlify(str:String) -> String {
 
 // Check is a string is exactly one change away from another. O(n).
 
-func oneChangeAway(original:String, new:String) -> Bool {
+func oneChangeAway(_ original:String, new:String) -> Bool {
     
     func checkReplacement() -> Bool {
         var changeFound = false
         for index in 0..<original.characters.count {
-            switch original[original.startIndex.advancedBy(index)] {
-            case new[new.startIndex.advancedBy(index)]:
+            switch original[original.characters.index(original.startIndex, offsetBy: index)] {
+            case new[new.characters.index(new.startIndex, offsetBy: index)]:
                 continue
             case _ where changeFound == false:
                 changeFound = true
@@ -130,13 +130,13 @@ func oneChangeAway(original:String, new:String) -> Bool {
     func checkRemoval() -> Bool {
         let originalSet = Set(original.characters)
         let newSet = Set(new.characters)
-        return newSet.isStrictSubsetOf(originalSet)
+        return newSet.isStrictSubset(of: originalSet)
     }
     
     func checkAddition() -> Bool {
         let originalSet = Set(original.characters)
         let newSet = Set(new.characters)
-        return newSet.isStrictSupersetOf(originalSet)
+        return newSet.isStrictSuperset(of: originalSet)
     }
     
     if original == new { return true }
@@ -151,20 +151,20 @@ func oneChangeAway(original:String, new:String) -> Bool {
 // Compress a string into character counts. Given "aaabbbccc", returns
 // "a3b3c3".
 
-func compressString(str:String) -> String {
+func compressString(_ str:String) -> String {
     if str.isEmpty { return str }
     
     var compressedString = ""
-    var index = str.startIndex.advancedBy(1)
+    var index = str.characters.index(str.startIndex, offsetBy: 1)
     var previousChar = str[str.startIndex]
     var currentCount = 1
     
-    for char in str.substringFromIndex(str.startIndex.advancedBy(1)).characters {
-        index = index.advancedBy(1)
+    for char in str.substring(from: str.characters.index(str.startIndex, offsetBy: 1)).characters {
+        index = str.characters.index(index, offsetBy: 1)
         if previousChar == char && index == str.endIndex {
             currentCount += 1
             compressedString.append(char)
-            compressedString.appendContentsOf(String(currentCount))
+            compressedString.append(String(currentCount))
             continue
         }
         
@@ -179,7 +179,7 @@ func compressString(str:String) -> String {
         
         compressedString.append(previousChar)
         if currentCount > 1 {
-            compressedString.appendContentsOf(String(currentCount))
+            compressedString.append(String(currentCount))
         }
         previousChar = char
         currentCount = 1
@@ -193,11 +193,11 @@ func compressString(str:String) -> String {
 
 // Check to see of one string is a rotation of another
 
-func checkForRotation(string1: String, _ string2: String) -> Bool {
+func checkForRotation(_ string1: String, _ string2: String) -> Bool {
     if string1.characters.count != string2.characters.count { return false }
     var s1 = string1
-    s1.appendContentsOf(string1)
-    return s1.containsString(string2)
+    s1.append(string1)
+    return s1.contains(string2)
 }
 
 class CheckForRotationTest: XCTestCase {

@@ -19,10 +19,10 @@ func ==(lhs:Rectangle, rhs:Rectangle) -> Bool {
 
 // Find the intersecting rectangle between two rectangles
 
-func findRectangularOverlap(rect1:Rectangle, _ rect2:Rectangle) -> Rectangle? {
-    func findLinearOverlap(start1:Int, _ length1:Int, _ start2:Int, _ length2:Int) -> (startOverlap: Int, endOverlap: Int)? {
-        let highestStartPoint = [start1, start2].maxElement()!
-        let lowestEndPoint = [start1 + length1, start2 + length2].minElement()!
+func findRectangularOverlap(_ rect1:Rectangle, _ rect2:Rectangle) -> Rectangle? {
+    func findLinearOverlap(_ start1:Int, _ length1:Int, _ start2:Int, _ length2:Int) -> (startOverlap: Int, endOverlap: Int)? {
+        let highestStartPoint = [start1, start2].max()!
+        let lowestEndPoint = [start1 + length1, start2 + length2].min()!
         
         if highestStartPoint >= lowestEndPoint { return nil }
         return (startOverlap: highestStartPoint, endOverlap:lowestEndPoint)
