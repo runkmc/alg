@@ -44,4 +44,11 @@ class UnionFindTest: XCTestCase {
         uf.connect(4, 8)
         XCTAssertTrue(uf.connected(3, 8))
     }
+    
+    func testMoreConnections() {
+        let uf = UnionFind(count: 11)
+        uf.connect(0, 10)
+        uf.connect(1, 10)
+        XCTAssertTrue(uf.connected(1, 0))
+    }
 }
