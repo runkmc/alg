@@ -32,7 +32,10 @@ class UnionFind {
     
     private func root(node:Int) -> Int {
         var current = node
-        while nodes[current] != current { current = nodes[current] }
+        while nodes[current] != current {
+            current = nodes[current]
+            nodes[node] = current
+        }
         return current
     }
 }
